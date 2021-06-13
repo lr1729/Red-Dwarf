@@ -2,8 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.Drive;
 
 public class Drivetrain extends Subsystem {
 
@@ -12,8 +11,8 @@ public class Drivetrain extends Subsystem {
 
   private Drivetrain() {
     // initialize VictorSPs
-    leftMasterVictor = new VictorSP(6);
-    leftMasterVictor = new VictorSP(4);
+    rightMasterVictor = new VictorSP(0);
+    leftMasterVictor = new VictorSP(1);
   }
 
   // Singleton for getting the instance of the drivetrain
@@ -27,13 +26,13 @@ public class Drivetrain extends Subsystem {
   // public funciton to set the speed of the motors
   public void setSpeed(double left, double right){
     leftMasterVictor.setSpeed(left);
-    rightMasterVictor.setSpeed(right);
+    rightMasterVictor.setSpeed(-right);
   }
 
   // Set default command to drive
   @Override
   protected void initDefaultCommand(){
-    // setDefaultCommand(new Drive());
+    setDefaultCommand(new Drive());
   }
   
 }
